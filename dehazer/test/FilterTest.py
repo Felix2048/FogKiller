@@ -15,12 +15,33 @@ class CoreTest(unittest.TestCase):
         self.image = np.asarray(self.origin)
         self.darkChannel = DarkChannel.getDarkChannel(self.image)
 
-    def test_box_filter(self):
+    # def test_box_filter(self):
+    #     plt.figure('DarkChannel')
+    #     plt.imshow(self.darkChannel, cmap='gray')
+    #     plt.show()
+    #     boxFiltered = BoxFilter.filter(self.darkChannel)
+    #     plt.figure('BoxFiltered')
+    #     plt.imshow(boxFiltered, cmap='gray')
+    #     plt.show()
+    #     self.assertTrue(boxFiltered is not None)
+
+    # def test_guided_filter(self):
+    #     plt.figure('DarkChannel')
+    #     plt.imshow(self.darkChannel, cmap='gray')
+    #     plt.show()
+    #     guidedFilter = GuidedFilter.filter(
+    #         self.darkChannel, self.image, s=None)
+    #     plt.figure('GuidedFilter')
+    #     plt.imshow(guidedFilter, cmap='gray')
+    #     plt.show()
+    #     self.assertTrue(guidedFilter is not None)
+
+    def test_fast_guided_filter(self):
         plt.figure('DarkChannel')
         plt.imshow(self.darkChannel, cmap='gray')
         plt.show()
-        boxFiltered = BoxFilter.filter(self.darkChannel, 40)
-        plt.figure('boxFiltered')
-        plt.imshow(boxFiltered, cmap='gray')
+        fastGuidedFilter = GuidedFilter.filter(self.darkChannel, self.image)
+        plt.figure('FastGuidedFilter')
+        plt.imshow(fastGuidedFilter, cmap='gray')
         plt.show()
-        self.assertTrue(boxFiltered is not None)
+        self.assertTrue(fastGuidedFilter is not None)
