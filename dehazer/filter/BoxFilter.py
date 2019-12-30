@@ -24,6 +24,7 @@ class BoxFilter:
         """
 
         M, N = p.shape
+        r = min(r, int(M / 2 - 1), int(N / 2 - 1))
         output = np.zeros_like(p)
 
         sumY = np.cumsum(p, axis=0)
