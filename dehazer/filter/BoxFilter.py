@@ -8,7 +8,7 @@ class BoxFilter:
     @staticmethod
     def filter(inputImage, radius):
         """
-        Get the transmission t of the RGB image data from a numpy array
+        Get the box filtered RGB image data from a numpy array
 
         # Arguments
 
