@@ -3,19 +3,23 @@ import numpy as np
 
 def getDarkChannel(I=None, patchSize=15):
     """
-    Get the dark channel prior from the (RGB) image data
+    Get the dark channel prior of the RGB image data from a numpy array
 
     # Arguments
-    I:  3 * M * N numpy array of the input image, where 3 stands for
-        the RGB channels, M is the height, and N is the width
 
-    patchSize: patch size
+    - I:  3 * M * N numpy array of the input image, where 3 stands for
+          the RGB channels, M is the height, and N is the width
+
+    - patchSize:  patch size
 
     # Returns
-    M * N numpy array of the Dark Chanel of the input image
+
+    - M * N numpy array of the Dark Chanel of the input image
+
     """
 
     M, N, _ = I.shape
+
     padding = ((int(patchSize / 2), int(patchSize / 2)),
                (int(patchSize / 2), int(patchSize / 2)), (0, 0))
     paddedImage = np.pad(I, padding, 'edge')
