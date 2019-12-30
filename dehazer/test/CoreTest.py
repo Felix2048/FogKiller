@@ -44,10 +44,10 @@ class CoreTest(unittest.TestCase):
     #     plt.ylabel('Atmosphere Value')
     #     plt.show()
 
-    def test_transmission(self):
-        t = Transmission.getTransmission(
-            self.image, self.darkChannel, self.A)
-        plt.figure('Transmission')
-        plt.imshow(t)
-        plt.show()
-        self.assertTrue(t is not None)
+    # def test_transmission(self):
+    #     t = Transmission.getTransmission(
+    #         self.image, self.darkChannel, self.A)
+    #     plt.figure('Transmission')
+    #     plt.imshow(t)
+    #     plt.show()
+    #     self.assertTrue(t is not None)

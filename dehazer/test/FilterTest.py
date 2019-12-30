@@ -17,9 +17,9 @@ class CoreTest(unittest.TestCase):
 
     def test_box_filter(self):
         plt.figure('DarkChannel')
-        plt.imshow(darkChannel, cmap='gray')
+        plt.imshow(self.darkChannel, cmap='gray')
         plt.show()
-        boxFiltered = BoxFilter.filter(self.image)
+        boxFiltered = BoxFilter.filter(self.darkChannel, 40)
         plt.figure('boxFiltered')
         plt.imshow(boxFiltered, cmap='gray')
         plt.show()
