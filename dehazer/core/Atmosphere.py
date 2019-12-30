@@ -1,7 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import numpy as np
 
 
-def getAtmosphere(I, darkChannel, p=0.0001, maxA=220):
+def getAtmosphere(I, darkChannel, p=0.0001, AMax=220):
     """
     Get the atmosphere light of the RGB image data from a numpy array
 
@@ -14,7 +16,7 @@ def getAtmosphere(I, darkChannel, p=0.0001, maxA=220):
 
     - p:  the top p brightest pixels in the dark channel
 
-    - maxA: threshold of atmosphere
+    - AMax: threshold of atmosphere
 
     # Returns
 
@@ -31,6 +33,6 @@ def getAtmosphere(I, darkChannel, p=0.0001, maxA=220):
     # take the highest intensity for each channel
     A = np.max(flattenI.take(brightestIndex, axis=0), axis=0)
     # set a threshold for atmosphere
-    A = np.minimum(A, maxA)
+    A = np.minimum(A, AMax)
 
     return A

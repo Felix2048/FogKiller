@@ -29,13 +29,13 @@ class CoreTest(unittest.TestCase):
 
     # def test_atmosphere(self):
     #     p = 0.0001
-    #     maxA = 220
+    #     AMax = 220
     #     A = Atmosphere.getAtmosphere(
-    #         self.image, self.darkChannel, p=p, maxA=maxA)
+    #         self.image, self.darkChannel, p=p, AMax=AMax)
     #     self.assertIsNotNone(A)
-    #     self.assertLessEqual(A[0], maxA)
-    #     self.assertLessEqual(A[1], maxA)
-    #     self.assertLessEqual(A[2], maxA)
+    #     self.assertLessEqual(A[0], AMax)
+    #     self.assertLessEqual(A[1], AMax)
+    #     self.assertLessEqual(A[2], AMax)
 
     #     colors = ['r', 'g', 'b']
     #     plt.title('Atmosphere')
