@@ -5,7 +5,7 @@ import numpy as np
 from dehazer.core.DarkChannel import getDarkChannel
 
 
-def getTransmission(I, darkChannel, A, w=0.95, patchSize=15):
+def getTransmission(I, darkChannel, A, w=0.95, patchSize=15, tMin=0.2):
     """
     Get the transmission t of the RGB image data from a numpy array
 
@@ -22,7 +22,9 @@ def getTransmission(I, darkChannel, A, w=0.95, patchSize=15):
     - w:    a constant parameter (0 < w <= 1) to optionally keep a very small
             amount of haze for the distant objects (aerial perspective)
 
-    - patchSize:  patch size
+    - patchSize:        patch size
+
+    - tMin:     threshold of transmission rate
 
     # Returns
 
@@ -31,5 +33,5 @@ def getTransmission(I, darkChannel, A, w=0.95, patchSize=15):
     """
 
     t = 1 - w * getDarkChannel(I / A, patchSize)
-
+    t = np.maximum(t, tMin)
     return t
