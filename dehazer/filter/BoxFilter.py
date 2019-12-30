@@ -6,16 +6,16 @@ import numpy as np
 class BoxFilter:
 
     @staticmethod
-    def filter(inputImage, radius):
+    def filter(p, r=40):
         """
         Get the box filtered RGB image data from a numpy array
 
         # Arguments
 
-        - inputImage:   M * N numpy array of a gray image data
+        - p(InputImage):   M * N numpy array of a gray image data
                         normalized to [0.0, 1.0]
 
-        - radius:   square window of a radius radius (integer)
+        - r:   square window of a radius r (integer)
 
         # Returns
 
@@ -23,21 +23,21 @@ class BoxFilter:
 
         """
 
-        M, N = inputImage.shape
-        output = np.zeros_like(inputImage)
+        M, N = p.shape
+        output = np.zeros_like(p)
 
-        sumY = np.cumsum(inputImage, axis=0)
-        output[:radius + 1] = sumY[radius: 2 * radius + 1]
-        output[radius + 1:M - radius] = sumY[2 *
-                                             radius + 1:] - sumY[:M - 2 * radius - 1]
-        output[-radius:] = np.tile(sumY[-1], (radius, 1)) - \
-            sumY[M - 2 * radius - 1:M - radius - 1]
+        sumY = np.cumsum(p, axis=0)
+        output[:r + 1] = sumY[r: 2 * r + 1]
+        output[r + 1:M - r] = sumY[2 *
+                                   r + 1:] - sumY[:M - 2 * r - 1]
+        output[-r:] = np.tile(sumY[-1], (r, 1)) - \
+            sumY[M - 2 * r - 1:M - r - 1]
 
         sumX = np.cumsum(output, axis=1)
-        output[:, :radius + 1] = sumX[:, radius:2 * radius + 1]
-        output[:, radius + 1:N - radius] = sumX[:, 2 *
-                                                radius + 1:] - sumX[:, :N - 2 * radius - 1]
-        output[:, -radius:] = np.tile(sumX[:, -1][:, None], (1, radius)) - \
-            sumX[:, N - 2 * radius - 1:N - radius - 1]
+        output[:, :r + 1] = sumX[:, r:2 * r + 1]
+        output[:, r + 1:N - r] = sumX[:, 2 *
+                                      r + 1:] - sumX[:, :N - 2 * r - 1]
+        output[:, -r:] = np.tile(sumX[:, -1][:, None], (1, r)) - \
+            sumX[:, N - 2 * r - 1:N - r - 1]
 
         return output
