@@ -24,10 +24,6 @@ class CoreTest(unittest.TestCase):
     #     plt.show()
     #     self.assertTrue(self.darkChannel is not None)
 
-    # def test_none_dark_channel(self):
-    #     with self.assertRaises(AttributeError):
-    #         DarkChannel.getDarkChannel()
-
     def test_atmosphere(self):
         p = 0.0001
         maxA = 220
@@ -44,7 +40,3 @@ class CoreTest(unittest.TestCase):
         plt.xlabel('RGB Channel')
         plt.ylabel('Atmosphere Value')
         plt.show()
-
-    def test_none_atmosphere(self):
-        with self.assertRaises(AttributeError):
-            Atmosphere.getAtmosphere()

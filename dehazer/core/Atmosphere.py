@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def getAtmosphere(I=None, darkChannel=None, p=0.0001, maxA=220):
+def getAtmosphere(I, darkChannel, p=0.0001, maxA=220):
     """
     Get the atmosphere light of the RGB image data from a numpy array
 

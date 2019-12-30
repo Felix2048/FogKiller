@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def getDarkChannel(I=None, patchSize=15):
+def getDarkChannel(I, patchSize=15):
     """
     Get the dark channel prior of the RGB image data from a numpy array
 
