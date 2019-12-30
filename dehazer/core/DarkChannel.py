@@ -1,7 +1,6 @@
 import numpy as np
 
 
-@staticmethod
 def getDarkChannel(I=None, patchSize=15):
     """
     Get the dark channel prior from the (RGB) image data

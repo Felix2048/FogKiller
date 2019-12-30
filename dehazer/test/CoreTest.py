@@ -6,7 +6,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 
-class GetDarkChannelTest(unittest.TestCase):
+class CoreTest(unittest.TestCase):
 
     def test_dark_channel(self):
         origin = Image.open('../../image/forest1.jpg')
@@ -20,5 +20,6 @@ class GetDarkChannelTest(unittest.TestCase):
         plt.show()
         self.assertTrue(darkChannel is not None)
 
+    def test_none_dark_channel(self):
         with self.assertRaises(AttributeError):
-            Dehazer.getDarkChannel()
+            DarkChannel.getDarkChannel()
