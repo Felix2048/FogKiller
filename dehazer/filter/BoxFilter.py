@@ -19,7 +19,7 @@ class BoxFilter:
 
         # Returns
 
-        - M * N numpy array of the filtered input image
+        - M * N numpy array of the filtered output image
 
         """
 
