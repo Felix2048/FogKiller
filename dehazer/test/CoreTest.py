@@ -17,37 +17,37 @@ class CoreTest(unittest.TestCase):
         self.t = Transmission.getTransmission(
             self.image, self.darkChannel, self.A)
 
-    # def test_dark_channel(self):
-    #     plt.figure('OriginImage')
-    #     plt.imshow(self.origin)
-    #     plt.show()
-    #     darkChannel = DarkChannel.getDarkChannel(self.image)
-    #     plt.figure('DarkChannel')
-    #     plt.imshow(darkChannel, cmap='gray')
-    #     plt.show()
-    #     self.assertTrue(darkChannel is not None)
+    def test_dark_channel(self):
+        plt.figure('OriginImage')
+        plt.imshow(self.origin)
+        plt.show()
+        darkChannel = DarkChannel.getDarkChannel(self.image)
+        plt.figure('DarkChannel')
+        plt.imshow(darkChannel, cmap='gray')
+        plt.show()
+        self.assertTrue(darkChannel is not None)
 
-    # def test_atmosphere(self):
-    #     p = 0.0001
-    #     AMax = 220
-    #     A = Atmosphere.getAtmosphere(
-    #         self.image, self.darkChannel, p=p, AMax=AMax)
-    #     self.assertIsNotNone(A)
-    #     self.assertLessEqual(A[0], AMax)
-    #     self.assertLessEqual(A[1], AMax)
-    #     self.assertLessEqual(A[2], AMax)
+    def test_atmosphere(self):
+        p = 0.0001
+        AMax = 220
+        A = Atmosphere.getAtmosphere(
+            self.image, self.darkChannel, p=p, AMax=AMax)
+        self.assertIsNotNone(A)
+        self.assertLessEqual(A[0], AMax)
+        self.assertLessEqual(A[1], AMax)
+        self.assertLessEqual(A[2], AMax)
 
-    #     colors = ['r', 'g', 'b']
-    #     plt.title('Atmosphere')
-    #     plt.scatter([0, 1, 2], A, c=colors, marker='o')
-    #     plt.xlabel('RGB Channel')
-    #     plt.ylabel('Atmosphere Value')
-    #     plt.show()
+        colors = ['r', 'g', 'b']
+        plt.title('Atmosphere')
+        plt.scatter([0, 1, 2], A, c=colors, marker='o')
+        plt.xlabel('RGB Channel')
+        plt.ylabel('Atmosphere Value')
+        plt.show()
 
-    # def test_transmission(self):
-    #     t = Transmission.getTransmission(
-    #         self.image, self.darkChannel, self.A)
-    #     plt.figure('Transmission')
-    #     plt.imshow(t)
-    #     plt.show()
-    #     self.assertTrue(t is not None)
+    def test_transmission(self):
+        t = Transmission.getTransmission(
+            self.image, self.darkChannel, self.A)
+        plt.figure('Transmission')
+        plt.imshow(t)
+        plt.show()
+        self.assertTrue(t is not None)
