@@ -5,3 +5,11 @@
 build/
 dist/
 .idea/
+
+App/.DS_Store
+App/dist/
+App/build/
+App/!build/icons
+App/node_modules/
+App/npm-debug.log.*
+App/thumbs.db
