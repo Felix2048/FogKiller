@@ -5,6 +5,12 @@ import numpy as np
 from .core import *
 from .filter import *
 
+from PIL import Image
+import matplotlib.pyplot as plt
+
+R, G, B = 0, 1, 2   # RGB index
+RGB = 3
+
 
 class Dehazer:
     """
@@ -21,8 +27,8 @@ class Dehazer:
     """
 
     @staticmethod
-    def dehaze(image, patchSize=15, p=0.0001, AMax=220, w=0.95, tMin=0.2,
-               useFilter=False, r=40, epsilon=1e-3, s=4):
+    def dehaze(image, patchSize=15, p=0.0001, AMax=240, w=0.95, tMin=0.1,
+               useFilter=True, r=40, epsilon=1e-3, s=4, viewProgress=True):
         """
         Get the transmission t of the RGB image data from a numpy array
 
@@ -50,8 +56,11 @@ class Dehazer:
 
         - epsilon:  argument for guided filter regularization
 
-        - s:  subsampling ratio for fast guided filter
+        - s:    subsampling ratio for fast guided filter, None stands for only
+                use guided filter
 
+        - viewProgress: boolean to choose whether or not to show the dehazing
+                        progress
 
         # Returns
 
@@ -63,17 +72,51 @@ class Dehazer:
         M, N, _ = image.shape
 
         Idark = DarkChannel.getDarkChannel(image, patchSize=patchSize)
-        A = Atmosphere.getAtmosphere(image, Idark, p=p, AMax=AMax)
-        t = Transmission.getTransmission(
-            image, Idark, A, w=w, patchSize=patchSize, tMin=tMin)
 
+        A = Atmosphere.getAtmosphere(image, Idark, p=p, AMax=AMax)
+
+        origin_t = Transmission.getTransmission(
+            image, A, w=w, patchSize=patchSize)
+
+        t = origin_t
         if useFilter:
             normImage = (image - image.min()) / (image.max() - image.min())
             t = GuidedFilter.filter(
-                Idark, normImage, r=r, epsilon=epsilon, s=s)
+                t, normImage, r=r, epsilon=epsilon, s=s)
+        t = np.maximum(t, tMin)
 
-        tTile = np.zeros_like(image)
-        tTile[:, :, R] = tiledt[:, :, G] = tiledt[:, :, B] = t
-        J = (image - A) / tTile + A
+        J = np.empty_like(image)
+        for channel in range(3):
+            J[:, :, channel] = (image[:, :, channel] -
+                                A[channel]) / t + A[channel]
+
+        if viewProgress:
+            plt.figure('I')
+            plt.imshow(image)
+            plt.show()
+
+            plt.figure('Idark')
+            plt.imshow(Idark, cmap='gray')
+            plt.show()
+
+            plt.figure('A')
+            colors = ['r', 'g', 'b']
+            plt.title('Atmosphere')
+            plt.scatter([0, 1, 2], A, c=colors, marker='o')
+            plt.xlabel('RGB Channel')
+            plt.ylabel('Atmosphere Value')
+            plt.show()
+
+            plt.figure('origin t')
+            plt.imshow(origin_t, cmap='gray')
+            plt.show()
+
+            plt.figure('t')
+            plt.imshow(t, cmap='gray')
+            plt.show()
+
+            plt.figure('J')
+            plt.imshow(J)
+            plt.show()
 
         return J
