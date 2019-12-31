@@ -28,7 +28,7 @@ class Dehazer:
 
     @staticmethod
     def dehaze(image, patchSize=15, p=0.0001, AMax=240, w=0.95, tMin=0.1,
-               useFilter=True, r=40, epsilon=1e-3, s=4, viewProgress=True):
+               useFilter=True, r=40, epsilon=1e-3, s=4, viewProgress=False):
         """
         Get the transmission t of the RGB image data from a numpy array
 
