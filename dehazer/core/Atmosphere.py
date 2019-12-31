@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import numpy as np
+import math
 
 
 def getAtmosphere(I, darkChannel, p=0.0001, AMax=240):
@@ -24,20 +25,18 @@ def getAtmosphere(I, darkChannel, p=0.0001, AMax=240):
 
     """
 
-    # M, N = darkChannel.shape
-    # flattenI = I.reshape(M * N, 3)
-    # flattenDarkChannel = darkChannel.ravel()
-    # # get the indexes of the top p brightest pixels in the dark channel
-    # brightestIndex = (-flattenDarkChannel).argsort()[:int(M * N * p)]
-    # # take the highest intensity for each channel
-    # A = np.max(flattenI.take(brightestIndex, axis=0), axis=0)
+    M, N = darkChannel.shape
 
-    mean_perpix = np.mean(I, axis=2).reshape(-1)
-    mean_topper = mean_perpix[:int(I.shape[0] * I.shape[1] * p)]
-    A = np.mean(mean_topper)
+    numPixels = int(max(math.floor(M * N * p), 1))
+    darkChannelVector = darkChannel.reshape(M * N, 1)
+    IVector = I.reshape(M * N, 3)
+    indices = darkChannelVector.argsort()[M * N - numPixels::]
 
-    # set a threshold for atmosphere
-    if AMax is not None:
-        A = np.minimum(A, AMax)
+    ASum = np.zeros(3)
+    for index in range(numPixels):
+        ASum += np.squeeze(IVector[indices[index]])
+
+    A = ASum / numPixels
+    A = np.minimum(A, AMax)
 
     return A
