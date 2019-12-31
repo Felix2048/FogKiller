@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def getAtmosphere(I, darkChannel, p=0.0001, AMax=220):
+def getAtmosphere(I, darkChannel, p=0.0001, AMax=240):
     """
     Get the atmosphere light of the RGB image data from a numpy array
 
@@ -24,15 +24,20 @@ def getAtmosphere(I, darkChannel, p=0.0001, AMax=220):
 
     """
 
-    M, N = darkChannel.shape
+    # M, N = darkChannel.shape
+    # flattenI = I.reshape(M * N, 3)
+    # flattenDarkChannel = darkChannel.ravel()
+    # # get the indexes of the top p brightest pixels in the dark channel
+    # brightestIndex = (-flattenDarkChannel).argsort()[:int(M * N * p)]
+    # # take the highest intensity for each channel
+    # A = np.max(flattenI.take(brightestIndex, axis=0), axis=0)
 
-    flattenI = I.reshape(M * N, 3)
-    flattenDarkChannel = darkChannel.ravel()
-    # get the indexes of the top p brightest pixels in the dark channel
-    brightestIndex = (-flattenDarkChannel).argsort()[:int(M * N * p)]
-    # take the highest intensity for each channel
-    A = np.max(flattenI.take(brightestIndex, axis=0), axis=0)
+    mean_perpix = np.mean(I, axis=2).reshape(-1)
+    mean_topper = mean_perpix[:int(I.shape[0] * I.shape[1] * p)]
+    A = np.mean(mean_topper)
+
     # set a threshold for atmosphere
-    A = np.minimum(A, AMax)
+    if AMax is not None:
+        A = np.minimum(A, AMax)
 
     return A
