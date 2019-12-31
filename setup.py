@@ -23,7 +23,7 @@ VERSION = '0.1.0'
 # What packages are required for this module to be executed?
 REQUIRED = [
     # 'requests', 'maya', 'records',
-    'numpy', 'pillow', 'more-itertools', 'scipy'
+    'numpy', 'pillow', 'more-itertools', 'scipy', 'matplotlib', 'argparse'
 ]
 
 # What packages are optional?
