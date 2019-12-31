@@ -5,7 +5,6 @@ import scipy.ndimage
 from dehazer.filter import BoxFilter
 from itertools import combinations_with_replacement
 from collections import defaultdict
-import cv2
 
 R, G, B = 0, 1, 2   # RGB index
 RGB = 3
