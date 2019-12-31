@@ -37,16 +37,16 @@ class CoreTest(unittest.TestCase):
         self.assertLessEqual(A[1], AMax)
         self.assertLessEqual(A[2], AMax)
 
-        colors = ['r', 'g', 'b']
-        plt.title('Atmosphere')
-        plt.scatter([0, 1, 2], A, c=colors, marker='o')
-        plt.xlabel('RGB Channel')
-        plt.ylabel('Atmosphere Value')
-        plt.show()
+        # colors = ['r', 'g', 'b']
+        # plt.title('Atmosphere')
+        # plt.scatter([0, 1, 2], A, c=colors, marker='o')
+        # plt.xlabel('RGB Channel')
+        # plt.ylabel('Atmosphere Value')
+        # plt.show()
 
     def test_transmission(self):
         t = Transmission.getTransmission(
-            self.image, self.darkChannel, self.A)
+            self.image, self.A)
         plt.figure('Transmission')
         plt.imshow(t)
         plt.show()

@@ -5,7 +5,7 @@ import numpy as np
 from dehazer.core.DarkChannel import getDarkChannel
 
 
-def getTransmission(I, darkChannel, A, w=0.95, patchSize=15):
+def getTransmission(I, A, w=0.95, patchSize=15):
     """
     Get the transmission t of the RGB image data from a numpy array
 
@@ -13,8 +13,6 @@ def getTransmission(I, darkChannel, A, w=0.95, patchSize=15):
 
     - I:    3 * M * N numpy array of the input image, where 3 stands for
           the RGB channels, M is the height, and N is the width
-
-    - darkChannel:  the dark channel prior of the image as an M * N numpy array
 
     - A:    3-element list contains atmosphere light ([0, L-1]) for each RGB
             channel
