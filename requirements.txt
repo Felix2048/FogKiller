@@ -1,0 +1,6 @@
+numpy
+pillow
+more-itertools
+scipy
+matplotlib
+argparse
