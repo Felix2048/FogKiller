@@ -1,5 +1,6 @@
 <template>
     <div class="navbar">
+        
         <div class="navbar-title">FogKiller</div>
     </div>
 </template>

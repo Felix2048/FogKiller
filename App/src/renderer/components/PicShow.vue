@@ -3,7 +3,7 @@
         <div class="img-box" @mousemove="OnMoseMove" @mouseup="is_mouse_down=false" ref="imgbox">
             <div class="part-l" :style="{ width:left_pic_width +'px'}">
                 <div class="img-before">
-                    <img :src="rawFilePath" ref="pic" alt="">
+                    <img :src="rawFilePath" style="width:1240px; height:668px;" ref="pic" alt="">
                 </div>
             </div>
             <span class="toolbar" :style="{ left:left_pic_width +'px'}">
@@ -12,7 +12,7 @@
             </span>
             <div class="part-r" ref="part2">
                 <div class="img-after">
-                    <img  src="../assets/after.jpg" alt="">
+                    <img  :src="newFilePath" style="width:1240px; height:668px;"  alt="">
                 </div>
             </div>
             <div class="tags">

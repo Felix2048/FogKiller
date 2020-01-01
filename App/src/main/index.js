@@ -24,7 +24,7 @@ function createWindow () {
     //resizable:false,
     webPreferences:{webSecurity: false}
   })
-
+  mainWindow.webContents.closeDevTools();
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
