@@ -1,4 +1,4 @@
-# image_dehaze
+# FogKiller
 
 Single Image Haze Removal Using Dark Channel Prior
 
@@ -26,4 +26,17 @@ Single Image Haze Removal Using Dark Channel Prior
   # example
   python dehaze.py -i ./image/1.bmp
   python dehaze.py -i ./image/1.bmp -o ./output/output.jpg
+```
+
+- Run in Windows:
+
+```shell
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:9080
+npm run dev
+
+# build electron application for production
+npm run build
 ```
