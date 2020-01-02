@@ -6,6 +6,8 @@ build/
 dist/
 .idea/
 
+package-lock.json
+package.json
 App/.DS_Store
 App/dist/
 App/build/
