@@ -31,6 +31,8 @@ Single Image Haze Removal Using Dark Channel Prior
 - Run in Windows:
 
 ```shell
+cd ./App
+
 # install dependencies
 npm install
 
